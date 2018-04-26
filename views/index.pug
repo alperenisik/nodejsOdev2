@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  if db && db.length > 0
+    each row in db
+      p(id=row.firstname+'-row') #{row.firstname} #{row.lastname} #{row.viewCount}
+        span(style="margin-left:20px") Düzenle
+        span.sil(style="margin-left:20px" id=key onclick="sil('"+row.firstname+"')") Sil
+    
+  if firstname
+    p #{firstname} #{lastname} #{viewCount}
+
+  form(action='/' method="post")
+    | First name:
+    br
+    input(type='text', name='firstname', value='Mickey')
+    br
+    |   Last name:
+    br
+    input(type='text', name='lastname', value='Mouse')
+    br
+    br
+    input(type='submit', value='Submit')
